@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>360MonoDepth: Results</title>
+    <script src="./demo_imgs/jquery-3.5.1.min.js"></script>
+    <style>
+        body {
+            padding: 1em;
+            color: rgb(0, 0, 0);
+            font-size: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            background-color: rgb(255, 255, 255);
+        }
+
+        h1 {
+            color: rgb(0, 51, 102);
+            text-align: center;
+        }
+
+        h3 {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        li {
+            margin: 3px 0px;
+        }
+
+        a {
+            color: rgb(0, 51, 102);
+        }
+
+        a:link {
+            color: rgb(39, 82, 178);
+        }
+
+        a:visited {
+            color: rgb(39, 82, 178);
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        button {
+            margin: 1px;
+            font: inherit;
+        }
+
+        .inactive {
+            border: 1px solid #1E90FF;
+            background-color: white;
+            color: black;
+        }
+
+        .active {
+            border: 1px solid #1E90FF;
+            background-color: #1E90FF;
+            color: white;
+        }
+
+        .datasets button,
+        .methods button,
+        .scenes button {
+            word-wrap: break-word;
+            width: 100%;
+            text-align: left;
+        }
+
+        .datasets button,
+        .methods button {
+            padding: 10px;
+        }
+
+        .scenes button {
+            padding: 3px;
+        }
+
+        .result img {
+            box-shadow: 0 30px 40px rgba(0, 0, 0, .1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Results for 360MonoDepth</h1>
+    <table style="margin:10px auto;">
+        <tbody>
+            <tr>
+                <td style="vertical-align: top;">
+                    <h3>Datasets:</h3>
+                    <div class="datasets" style="width:120px; margin-right:10px; display:inline-block;">
+
+                    </div>
+                </td>
+                <td style="vertical-align: top;">
+                    <h3>Scenes:</h3>
+                    <div class="scenes" style="width:250px; margin-right:10px; display:inline-block;">
+
+                    </div>
+                </td>
+                <td style="vertical-align: top;">
+                    <h3>Methods:</h3>
+                    <div class="methods" style="width:200px;  margin-right:10px; display:inline-block;">
+
+                    </div>
+
+                </td>
+                <td>
+                    <div class="result" style="text-align:center; margin-left:50px;">
+                        <h3 style="text-align: left;">Image:</h3>
+                        <img width="1000" style="margin: 0px auto; max-width: 100%;" onerror="imgError()" src="./demo_imgs/empty.jpg">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- <div>
+        Footnotes:
+        <ol>
+            <li>1</li>
+            <li>2</li>
+
+        </ol>
+    </div> -->
+
+    <script type="text/javascript">
+        // key is show_name, value is internal_name
+        var datasets = {
+            'Matterport3D': 'matterport',
+            'OmniPhotos': 'omniphotos',
+            'Replica360': 'replica',
+        };
+
+        var matterport3DScenes = {
+            '00037': '037',
+            '00051': '051',
+            '00342': '342',
+            '00396': '396',
+            '00462': '462',
+            '00481': '481',
+            '00564': '564',
+            '00584': '584',
+            '00979': '979',
+            '01480': '1480',
+            '01582': '1582',
+            '01811': '1811'
+        };
+
+        var replica360Scenes = {
+            'apartment_0': '121',
+            'frl_apartment_0': '016',
+            'hotel_0 (1)': '072',
+            'hotel_0 (2)': '079',
+            'office_0': '112',
+            'office_1': '028',
+            'office_3 (1)': '001',
+            'office_3 (2)': '095',
+            'office_4 (1)': '030',
+            'office_4 (2)': '037',
+            'office_4 (3)': '039',
+            'room_0': '053',
+        };
+
+        var omniphotosScenes = {
+            'Alley': '027',
+            'BeihaiPark': '002',
+            'Cathedral': '020',
+            'Circus': '024',
+            'CircusTrees': '004',
+            'Coast': '007',
+            'Kramerbrucke': '013',
+            'SecretGarden2': '008',
+            'Ship': '010',
+            'Shrines1': '009',
+            'Temple3': '005',
+            'Wulongting': '000',
+        };
+
+        var dataset2scenes = {
+            "matterport": matterport3DScenes,
+            'replica': replica360Scenes,
+            'omniphotos': omniphotosScenes
+        }
+
+        var matterportMethods = {
+            'Input': 'rgb',
+            'Ground Truth': 'GT',
+            'OmniDepth': 'omnidepth',
+            'UniFuse': 'unifuse',
+            'BiFuse': 'bifuse',
+            'HoHoNet': 'hohonet',
+            'Ours (Frustum)': '360monodepth_frustum',
+            'Ours (Poisson)': '360monodepth_poisson'
+        };
+
+        var replica360Methods = {
+            'Input': 'rgb',
+            'Ground Truth': 'GT',
+            'OmniDepth': 'omnidepth',
+            'UniFuse': 'unifuse',
+            'BiFuse': 'bifuse',
+            'HoHoNet': 'hohonet',
+            'Ours (Frustum)': '360monodepth_frustum',
+            'Ours (Poisson)': '360monodepth_poisson'
+        };
+
+        var omniphotosMethods = {
+            'Input': 'rgb',
+            'OmniDepth': 'omnidepth',
+            'UniFuse': 'unifuse',
+            'BiFuse': 'bifuse',
+            'HoHoNet': 'hohonet',
+            'Ours (MiDaS2, Frustum)': '360monodepth_midas2_frustum',
+            'Ours (MiDaS2, Poisson)': '360monodepth_midas2_poisson',
+            'Ours (MiDaS3, Frustum)': '360monodepth_midas3_frustum',
+            'Ours (MiDaS3, Poisson)': '360monodepth_midas3_poisson'
+        };
+
+        var dataset2methods = {
+            "matterport": matterportMethods,
+            'replica': replica360Methods,
+            'omniphotos': omniphotosMethods
+        }
+
+        function imgError(url) {
+            $('.result img').prop("src", "demo_imgs/empty.jpg");
+        }
+
+        function clickSceneMethod() {
+            nameClick = $(this).attr('id');
+            colNameClick = $(this).parent().prop('className')
+
+            buttonsName = undefined
+            if (colNameClick == "scenes") {
+                if (sceneNameCur == nameClick) {
+                    return;
+                } else {
+                    sceneNameCur = nameClick;
+                    buttonsName = ".scenes button"
+                }
+            }
+            else if (colNameClick == "methods") {
+                if (methodNameCur == nameClick) {
+                    return;
+                } else {
+                    methodNameCur = nameClick;
+                    buttonsName = ".methods button"
+                }
+            }
+
+            // 1) update activate button
+            $(buttonsName).each(function () {
+                $(this).addClass('inactive').removeClass('active');
+            });
+            $(this).removeClass('inactive').addClass('active');
+
+            // 2) update image result
+            imageFileName = "demo_imgs/" + datasetNameCur + "/" + sceneNameCur + '_' + methodNameCur + ".jpg";
+            console.log(imageFileName)
+            $('.result img').prop("src", imageFileName);
+        }
+
+        var datasetNameCur = undefined;
+        var sceneNameCur = undefined;
+        var methodNameCur = undefined;
+
+        jQuery(window.document).ready(function () {
+            // 1) create dataset button
+            for (var datasetName in datasets) {
+                var datasetPrefixes = datasets[datasetName];
+                $('<button>', {
+                    id: datasetPrefixes,
+                    class: "inactive",
+                    text: datasetName
+                }).appendTo('.datasets');
+            }
+
+            // 1-1) dataset button create click function
+            $(".datasets button").mouseover(function () {
+                // 1) active clicked button
+                datasetInterName = $(this).attr('id')
+                if (datasetInterName == datasetNameCur) {
+                    return
+                }
+                datasetNameCur = datasetInterName;
+
+                $(".datasets button").each(function () {
+                    $(this).addClass('inactive').removeClass('active');
+                });
+                $(this).removeClass('inactive').addClass('active');
+
+                // 2)  update/create scenes list
+                // 2-1) clear scene button
+                $(".scenes").empty()
+                // 2-2) add new scene button
+                scenes = dataset2scenes[datasetInterName]
+                for (var sceneName in scenes) {
+                    var sceneInterName = scenes[sceneName];
+                    $('<button>', {
+                        id: sceneInterName,
+                        class: "inactive",
+                        text: sceneName
+                    }).appendTo('.scenes').mouseover(clickSceneMethod)
+                }
+
+                // 3) update/create method
+                // 3-1) clear method button
+                $(".methods").empty()
+                // 3-2) add new method button
+                methods = dataset2methods[datasetInterName]
+                for (var methodName in methods) {
+                    var methodInterName = methods[methodName];
+                    $('<button>', {
+                        id: methodInterName,
+                        class: "inactive",
+                        text: methodName
+                    }).appendTo('.methods').mouseover(clickSceneMethod)
+                }
+
+                // 
+                sceneNameCur = undefined
+                methodNameCur = undefined
+                $('.scenes button').eq(0).triggerHandler('mouseover');
+                $('.methods button').eq(0).triggerHandler('mouseover');
+            });
+
+
+            $('.datasets button').eq(0).triggerHandler('mouseover');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- bootswatch css -->
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+	<style>
+		body {
+			padding-top: 5rem;
+		}
+		.starter-template {
+			padding: 3rem 1.5rem;
+		}
+	</style>
+
+	<title>360MonoDepth</title>
+</head>
+
+<body>
+<div class="container-fluid" style="max-width:900px;margin-left:auto;margin-right:auto;">
+	<div class="row">
+		<h4 class="display-4" style="text-align:center;">360MonoDepth: High-Resolution 360° Monocular Depth Estimation</h4><br>
+	</div>
+
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-12 text-center">
+			<h3 class="display-5" style="color: gray">CVPR 2022</h3>
+		</div>
+	</div>
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-3 text-center">
+			<a href="https://manurare.github.io/" style="color:#007bff; text-align:center">
+				Manuel Rey Area*
+			</a>
+			<br>University of Bath
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="https://yuanmingze.github.io/" style="color:#007bff; text-align:center">
+				Mingze Yuan*
+			</a>
+			<br>University of Bath
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="https://richardt.name/" style="color:#007bff; text-align:center">
+				Christian Richardt
+			</a>
+			<br>
+			University of Bath
+		</div>
+	</div>
+	<div class="row justify-content-md-center" style="margin-top: 2em; margin-bottom: 3em">
+		<div class="col text-center">
+			<ul class="nav nav-pills nav-justified" style="justify-content: center;">
+				<li>
+					<a href="https://arxiv.org/abs/2111.15669" style="color:black">
+						<i class="fa fa-file fa-5x" style="padding:15px"></i>
+						<br><strong>Paper</strong>
+					</a>
+				</li>
+				<li>
+					<a href="#" style="color:black">
+						<i class="fa fa-github fa-5x" style="padding:15px"></i>
+						<br><strong>Code</strong>
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/manurare" style="color:black">
+						<i class="fa fa-database fa-5x" style="padding:15px"></i>
+						<br><strong>Data</strong>
+					</a>
+				</li>
+				<li>
+					<a href="demo.html" style="color:black">
+						<i class="fa fa-image fa-5x" style="padding:15px"></i>
+						<br><strong>Results</strong>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+	<div class="row">
+		<img src="imgs/method_pipeline.png" class="img-responsive" alt="overview" style="width: 100%; margin-left: 1.1em;padding: 15px"><br>
+	</div>
+		<div class="col">
+			<h3 style="text-align: left;">
+				Abstract
+			</h3>
+			<p class="text-justify">
+				360° cameras can capture complete environments in a single
+				shot, which makes 360° imagery alluring in many computer
+				vision tasks. However, monocular depth estimation remains
+				a challenge for 360° data, particularly for high resolutions
+				like 2K (2048×1024) and beyond that are important for
+				novel-view synthesis and virtual reality applications. Current
+				CNN-based methods do not support such high resolutions
+				due to limited GPU memory. In this work, we propose a flexible
+				framework for monocular depth estimation from high-
+				resolution 360° images using tangent images. We project the
+				360° input image onto a set of tangent planes that produce
+				perspective views, which are suitable for the latest, most accurate
+				state-of-the-art perspective monocular depth estimators.
+				To achieve globally consistent disparity estimates, we
+				recombine the individual depth estimates using deformable
+				multi-scale alignment followed by gradient-domain blending.
+				The result is a dense, high-resolution 360° depth map with
+				a high level of detail, also for outdoor scenes which are not
+				supported by existing methods.
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<h3 style="text-align: left;">
+				Citation
+			</h3>
+			<div style="background-color: lightgray;">
+			<pre style="display: inline;">
+	@inproceedings{reyarea2021360monodepth,
+		title={{360MonoDepth}: High-Resolution 360{\deg} Monocular Depth Estimation},
+		author={Manuel Rey-Area and Mingze Yuan and Christian Richardt},
+		booktitle={CVPR},
+		year={2022}}</pre>
+			</div>
+		</div>
+	</div>
+	<br>
+</div>
+</body>
+</html>
