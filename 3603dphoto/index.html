@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- bootswatch css -->
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+	<style>
+		body {
+			padding-top: 5rem;
+		}
+		.starter-template {
+			padding: 3rem 1.5rem;
+		}
+	</style>
+
+	<title>360 3D Photos</title>
+</head>
+
+<body>
+<div class="container-fluid" style="max-width:900px;margin-left:auto;margin-right:auto;">
+	<div class="col-md-12 text-center">
+		<h4 class="display-4" style="text-align:center; white-space: pre-line;">360° 3D Photos from a <br> Single 360° Input Image</h4>
+	</div>
+
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-12 text-center">
+			<h3 class="display-5" style="color: gray">IEEE VR 2025</h3>
+		</div>
+	</div>
+	<br>
+	<div class="row justify-content-md-center">
+		<div class="col-md-3 text-center">
+			<a href="https://manurare.github.io/" style="color:#007bff; text-align:center">
+				Manuel Rey Area
+			</a>
+			<br>University of Bath
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="https://richardt.name/" style="color:#007bff; text-align:center">
+				Christian Richardt
+			</a>
+			<br>
+			Meta Reality Labs
+		</div>
+	</div>
+	<div class="row justify-content-md-center" style="margin-top: 2em; margin-bottom: 3em">
+		<div class="col text-center">
+			<ul class="nav nav-pills nav-justified" style="justify-content: center;">
+				<li>
+					<a href="paper.pdf" style="color:black">
+						<i class="fa fa-file fa-5x" style="padding:15px"></i>
+						<br><strong>Paper</strong>
+					</a>
+				</li>
+				<li>
+					<a href="" style="color:black">
+						<i class="fa fa-github fa-5x" style="padding:15px"></i>
+						<br><strong>Code</strong>
+					</a>
+				</li>
+				<!-- <li>
+					<a href="#data" style="color:black">
+						<i class="fa fa-database fa-5x" style="padding:15px"></i>
+						<br><strong>Data</strong>
+					</a>
+				</li> -->
+				<!-- <li>
+					<a href="demo.html" style="color:black">
+						<i class="fa fa-image fa-5x" style="padding:15px"></i>
+						<br><strong>Results</strong>
+					</a>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<img src="imgs/teaser.png" class="img-responsive" alt="overview" style="width: 100%; padding: 15px"><br>
+		<div class="col">
+			<h3 style="text-align: left;">
+				Abstract
+			</h3>
+			<p class="text-justify">
+				360° images are a popular medium for bringing photography into virtual reality. While users can look in any direction by
+				rotating their heads, 360° images ultimately look flat. That is because they lack depth information and thus cannot create motion parallax
+				when translating the head. To achieve a fully immersive VR experience from a single 360° image, we introduce a novel method to
+				upgrade 360° images to free-viewpoint renderings with 6 degrees of freedom. Alternative approaches reconstruct textured 3D geometry,
+				which is fast to render but suffers from visible reconstruction artifacts, or use neural radiance fields that produce high-quality novel
+				views but too slowly for VR applications. Our 360° 3D photos build on 3D Gaussian splatting as the underlying scene representation to
+				simultaneously achieve high visual quality and real-time rendering speed. To fill plausible content in previously unseen regions, we
+				introduce a novel combination of latent diffusion inpainting and monocular depth estimation with Poisson-based blending. Our results
+				demonstrate state-of-the-art visual and depth quality at rendering rates of 105 FPS per megapixel on a commodity GPU.
+			</p>
+		</div>
+	</div>
+	<!-- <div class="row justify-content-md-center" id="video">
+		<div class="col">
+			<h3 style="text-align: left;">
+				Video
+			</h3>
+			<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">
+				<div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;">
+					<iframe src="https://www.youtube.com/embed/fR00alALk5E" frameborder="0" allowfullscreen="" style="width:100%;height:100%"></iframe>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<br>
+	<!-- <div class="row">
+		<div class="col">
+			<h3 style="text-align: left;">
+				Citation
+			</h3>
+			<div style="background-color: lightgray;">
+			<pre style="display: inline; white-space: pre-wrap">
+@inproceedings{reyarea2021360monodepth,
+	title={{360MonoDepth}: High-Resolution 360{\deg} Monocular Depth Estimation},
+	author={Manuel Rey-Area and Mingze Yuan and Christian Richardt},
+	booktitle={CVPR},
+	year={2022}}</pre>
+			</div>
+		</div>
+	</div> -->
+	<br>
+</div>
+</body>
+</html>
