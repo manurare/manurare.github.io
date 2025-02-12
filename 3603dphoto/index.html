@@ -9,6 +9,63 @@
 	<link rel="stylesheet" href="bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+	<link rel="stylesheet" href="resources/style.css">
+	<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+	<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+	<link rel="stylesheet" href="resources/glide-custom.css">
+	<script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
+
+	<script>
+		// Initialize Glide
+		let glide;
+	
+		function initializeGlide() {
+		  // If already initialized, destroy it
+		  if (glide) glide.destroy();
+	
+		  // Re-initialize Glide with the active slide group
+		  glide = new Glide("#dynamic-carousel", {
+			type: "carousel",
+			perView: 1,
+			focusAt: "center",
+			// autoplay: 5000,
+			hoverpause: true
+		  }).mount();
+		}
+	
+		// Function to Show Selected Group
+		function showGroup(group) {
+		  // Hide all groups
+		  document.querySelectorAll('.slide-group').forEach(group => {
+			group.classList.remove('active');
+		  });
+	
+		  // Show the selected group
+		  document.querySelector(`.slide-group[data-group="${group}"]`).classList.add('active');
+	
+		  // Reinitialize Glide
+		  initializeGlide();
+		}
+	
+		// Set Default Active Group on Page Load
+		window.onload = function() {
+		  showGroup('replica'); // Default to Group 1
+		};
+	  </script>
+
+	<!-- <script>
+		window.onload = function() {
+		  new Glide("#dynamic-carousel", {
+			type: "carousel",
+			perView: 1,
+			focusAt: "center",
+			// autoplay: 5000,
+			hoverpause: true
+		  }).mount();
+		};
+	</script> -->
+
 	<style>
 		body {
 			padding-top: 5rem;
@@ -64,18 +121,12 @@
 						<br><strong>Code</strong>
 					</a>
 				</li>
-				<!-- <li>
-					<a href="#data" style="color:black">
-						<i class="fa fa-database fa-5x" style="padding:15px"></i>
-						<br><strong>Data</strong>
-					</a>
-				</li> -->
-				<!-- <li>
-					<a href="demo.html" style="color:black">
+				<li>
+					<a href="#results" style="color:black">
 						<i class="fa fa-image fa-5x" style="padding:15px"></i>
 						<br><strong>Results</strong>
 					</a>
-				</li> -->
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -98,6 +149,186 @@
 			</p>
 		</div>
 	</div>
+
+	<script>
+		// Event listeners for buttons
+		document.querySelectorAll('button[data-target]').forEach(button => {
+		  button.addEventListener('click', () => {
+			const targetCarousel = button.getAttribute('data-target');
+	
+			// Check if the carousel exists
+			if (carousels[targetCarousel]) {
+			  // Example Action: Move to the next slide
+			  carousels[targetCarousel].go('>');
+			  
+			  // Optional: Log to see which one was selected
+			  console.log(`Selected: ${targetCarousel}`);
+			}
+		  });
+		});
+	  </script>
+
+	<div class="row justify-content-md-center" id="results">
+		<div class="col">
+			<h3 style="text-align: left;">
+				Results
+			</h3>
+			<div align="center">
+				<button class="selected-dataset" data-target="replica" onclick="showGroup('replica')">Replica</button>
+				<button class="selected-dataset" data-target="matterport" onclick="showGroup('matterport')">Matteport3D</button>
+				<button class="selected-dataset" data-target="omniphotos" onclick="showGroup('omniphotos')">OmniPhotos</button>
+			</div>
+			<br>
+		<div id="dynamic-carousel" class="glide glide--ltr glide--carousel glide--swipeable">
+			<div class="glide__track" data-glide-el="track">
+				<ul class="glide__slides slide-group" data-group="replica" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-6000.45px, 0px, 0px);">
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/room_0_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/room_1_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/room_2_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/apartment_0_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/apartment_1_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/apartment_2_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/hotel_0_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/office_0_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/office_1_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/office_2_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/office_3_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/replica/office_4_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+				</ul>
+				<ul class="glide__slides slide-group" data-group="omniphotos">
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BathCircus2_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BathGreen1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<!-- <li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						</video>
+					</li> -->
+				</ul>
+			</div>
+			<div class="glide__arrows" data-glide-el="controls">
+				<span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="resources/arrow-left-circle-fill.svg"></span>
+				<span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="resources/arrow-right-circle-fill.svg"></span>
+			</div>
+			<!-- <div class="glide__bullets" data-glide-el="controls[nav]">
+				<span class="glide__bullet glide__bullet--active" data-glide-dir="=0"></span>
+				<span class="glide__bullet" data-glide-dir="=1"></span>
+				<span class="glide__bullet" data-glide-dir="=2"></span>
+				<span class="glide__bullet" data-glide-dir="=3"></span>
+				<span class="glide__bullet" data-glide-dir="=4"></span>
+				<span class="glide__bullet" data-glide-dir="=5"></span>
+				<span class="glide__bullet" data-glide-dir="=6"></span>
+				<span class="glide__bullet" data-glide-dir="=7"></span>
+				<span class="glide__bullet" data-glide-dir="=9"></span>
+				<span class="glide__bullet" data-glide-dir="=10"></span>
+				<span class="glide__bullet" data-glide-dir="=11"></span>
+				<span class="glide__bullet" data-glide-dir="=12"></span>
+			</div> -->
+		</div>
+		<p></p>  
+		<p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://github.com/augmentedperception/deepview_video_dataset">Replica</a>, <a href="https://www.interdigital.com/data_sets/light-field-dataset">Matterport3D</a>, and <a href="https://github.com/facebookresearch/Neural_3D_Video">Omniphotos</a> datasets.</p>
+	</div>
+	  
 	<!-- <div class="row justify-content-md-center" id="video">
 		<div class="col">
 			<h3 style="text-align: left;">
