@@ -17,44 +17,6 @@
 	<script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
 
 	<script>
-		// Initialize Glide
-		let glide;
-	
-		function initializeGlide() {
-		  // If already initialized, destroy it
-		  if (glide) glide.destroy();
-	
-		  // Re-initialize Glide with the active slide group
-		  glide = new Glide("#dynamic-carousel", {
-			type: "carousel",
-			perView: 1,
-			focusAt: "center",
-			// autoplay: 5000,
-			hoverpause: true
-		  }).mount();
-		}
-	
-		// Function to Show Selected Group
-		function showGroup(group) {
-		  // Hide all groups
-		  document.querySelectorAll('.slide-group').forEach(group => {
-			group.classList.remove('active');
-		  });
-	
-		  // Show the selected group
-		  document.querySelector(`.slide-group[data-group="${group}"]`).classList.add('active');
-	
-		  // Reinitialize Glide
-		  initializeGlide();
-		}
-	
-		// Set Default Active Group on Page Load
-		window.onload = function() {
-		  showGroup('replica'); // Default to Group 1
-		};
-	  </script>
-
-	<!-- <script>
 		window.onload = function() {
 		  new Glide("#dynamic-carousel", {
 			type: "carousel",
@@ -64,7 +26,7 @@
 			hoverpause: true
 		  }).mount();
 		};
-	</script> -->
+	</script>
 
 	<style>
 		body {
@@ -150,22 +112,42 @@
 		</div>
 	</div>
 
-	<script>
-		// Event listeners for buttons
-		document.querySelectorAll('button[data-target]').forEach(button => {
-		  button.addEventListener('click', () => {
-			const targetCarousel = button.getAttribute('data-target');
+    <script>
+		// Initialize Glide
+		let glide;
 	
-			// Check if the carousel exists
-			if (carousels[targetCarousel]) {
-			  // Example Action: Move to the next slide
-			  carousels[targetCarousel].go('>');
-			  
-			  // Optional: Log to see which one was selected
-			  console.log(`Selected: ${targetCarousel}`);
-			}
+		function initializeGlide(group) {
+		  // If already initialized, destroy it
+		  if (glide) glide.destroy();
+	
+		  // Re-initialize Glide with the active slide group
+          let carousel = "dynamic-carousel"; 
+          if (group=="replica") carousel = "dynamic-carousel-r";
+          if (group=="m3d") carousel = "dynamic-carousel-m";
+          if (group=="omniphotos") carousel = "dynamic-carousel-o";
+		  glide = new Glide(`#${carousel}`, {
+			type: "carousel",
+			perView: 1,
+			focusAt: "center",
+			// autoplay: 5000,
+			hoverpause: true
+		  }).mount();
+          document.querySelector(`#${carousel}`).classList.remove("hidden-element");
+          glide.update();
+		}
+	
+		// Function to Show Selected Group
+		function showGroup(group) {
+            document.querySelectorAll('.glide').forEach(group => {
+			group.classList.add('hidden-element');
 		  });
-		});
+          initializeGlide(group);
+		}
+	
+		// Set Default Active Group on Page Load
+		window.onload = function() {
+		  showGroup('replica'); // Default to Group 1
+		};
 	  </script>
 
 	<div class="row justify-content-md-center" id="results">
@@ -173,15 +155,15 @@
 			<h3 style="text-align: left;">
 				Results
 			</h3>
-			<div align="center">
-				<button class="selected-dataset" data-target="replica" onclick="showGroup('replica')">Replica</button>
-				<button class="selected-dataset" data-target="matterport" onclick="showGroup('matterport')">Matteport3D</button>
-				<button class="selected-dataset" data-target="omniphotos" onclick="showGroup('omniphotos')">OmniPhotos</button>
+            <div align="center">
+				<button class="selected-dataset" onclick="showGroup('replica')">Replica</button>
+				<button class="selected-dataset" onclick="showGroup('m3d')">Matteport3D</button>
+				<button class="selected-dataset" onclick="showGroup('omniphotos')">OmniPhotos</button>
 			</div>
 			<br>
-		<div id="dynamic-carousel" class="glide glide--ltr glide--carousel glide--swipeable">
+		<div id="dynamic-carousel-r" class="glide glide--ltr glide--carousel glide--swipeable">
 			<div class="glide__track" data-glide-el="track">
-				<ul class="glide__slides slide-group" data-group="replica" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-6000.45px, 0px, 0px);">
+				<ul class="glide__slides" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-.45px, 0px, 0px);">
 					<li class="glide__slide">
 						<video controls muted loop autoplay>
 						<source src="videos/replica/room_0_grid.mp4" type="video/mp4">
@@ -243,7 +225,113 @@
 						</video>
 					</li>
 				</ul>
-				<ul class="glide__slides slide-group" data-group="omniphotos">
+			</div>
+			<div class="glide__arrows" data-glide-el="controls">
+				<span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="resources/arrow-left-circle-fill.svg"></span>
+				<span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="resources/arrow-right-circle-fill.svg"></span>
+			</div>
+			<div class="glide__bullets" data-glide-el="controls[nav]">
+				<span class="glide__bullet glide__bullet--active" data-glide-dir="=0"></span>
+				<span class="glide__bullet" data-glide-dir="=1"></span>
+				<span class="glide__bullet" data-glide-dir="=2"></span>
+				<span class="glide__bullet" data-glide-dir="=3"></span>
+				<span class="glide__bullet" data-glide-dir="=4"></span>
+				<span class="glide__bullet" data-glide-dir="=5"></span>
+				<span class="glide__bullet" data-glide-dir="=6"></span>
+				<span class="glide__bullet" data-glide-dir="=7"></span>
+				<span class="glide__bullet" data-glide-dir="=8"></span>
+				<span class="glide__bullet" data-glide-dir="=0"></span>
+				<span class="glide__bullet" data-glide-dir="=10"></span>
+				<span class="glide__bullet" data-glide-dir="=11"></span>
+			</div>
+            <p></p>
+            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://github.com/facebookresearch/Replica-Dataset">Replica</a>.</p>
+	    </div>
+
+        <div id="dynamic-carousel-m" class="glide glide--ltr glide--carousel glide--swipeable">
+			<div class="glide__track" data-glide-el="track">
+				<ul class="glide__slides" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-.45px, 0px, 0px);">
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/9dfb6ed5ed7b47b199d8aa7e5b34727a_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+                    <li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/297c3ab529204fafb3ddf80e6efeec7f_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/45aa201f03e84e51a94f49c04b60ccf2_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/48ee6148c9af448faf7c3839ed5ad1d7_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/57f69b8347254b6d8211063688b39e56_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/60ce99b0264148c09db7ef836ad77e3f_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/7408db4f00ea4e9580eddbcf75aa2129_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/aec041555da74f3783f941d4e2e24244_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/b18550f5d62247ce8ca6fcf00284c5c6_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/c2e11b94c07a4d6c85cc60286f586a02_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+					<li class="glide__slide">
+						<video controls muted loop autoplay>
+						<source src="videos/m3d/dde66ea80aca47968d3ec9c6e6ef3c0a_grid.mp4" type="video/mp4">
+						</video>
+					</li>
+				</ul>
+			</div>
+			<div class="glide__arrows" data-glide-el="controls">
+				<span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="resources/arrow-left-circle-fill.svg"></span>
+				<span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="resources/arrow-right-circle-fill.svg"></span>
+			</div>
+			<div class="glide__bullets" data-glide-el="controls[nav]">
+				<span class="glide__bullet" data-glide-dir="=0"></span>
+				<span class="glide__bullet" data-glide-dir="=1"></span>
+				<span class="glide__bullet" data-glide-dir="=2"></span>
+				<span class="glide__bullet" data-glide-dir="=3"></span>
+				<span class="glide__bullet" data-glide-dir="=4"></span>
+				<span class="glide__bullet" data-glide-dir="=5"></span>
+				<span class="glide__bullet" data-glide-dir="=6"></span>
+				<span class="glide__bullet" data-glide-dir="=7"></span>
+				<span class="glide__bullet" data-glide-dir="=8"></span>
+				<span class="glide__bullet" data-glide-dir="=9"></span>
+				<span class="glide__bullet" data-glide-dir="=10"></span>
+			</div>
+            <p></p>
+            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://niessner.github.io/Matterport/">Matterport3D</a>.</p>
+	    </div>
+
+        <div id="dynamic-carousel-o" class="glide glide--ltr glide--carousel glide--swipeable">
+			<div class="glide__track" data-glide-el="track">
+				<ul class="glide__slides" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-.45px, 0px, 0px);">
 					<li class="glide__slide">
 						<video controls muted loop autoplay>
 						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
@@ -259,59 +347,44 @@
 						<source src="videos/omniphotos/BathGreen1_row.mp4" type="video/mp4">
 						</video>
 					</li>
-					<!-- <li class="glide__slide">
+					<li class="glide__slide">
 						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						<source src="videos/omniphotos/DublinShip1_row.mp4" type="video/mp4">
 						</video>
 					</li>
 					<li class="glide__slide">
 						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						<source src="videos/omniphotos/Jaman_row.mp4" type="video/mp4">
 						</video>
 					</li>
 					<li class="glide__slide">
 						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						<source src="videos/omniphotos/GenoaCathedral_row.mp4" type="video/mp4">
 						</video>
 					</li>
 					<li class="glide__slide">
 						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						<source src="videos/omniphotos/KoreaField_row.mp4" type="video/mp4">
 						</video>
 					</li>
 					<li class="glide__slide">
 						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						<source src="videos/omniphotos/KyotoShrines_row.mp4" type="video/mp4">
 						</video>
 					</li>
 					<li class="glide__slide">
 						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
+						<source src="videos/omniphotos/NIrelandField_row.mp4" type="video/mp4">
 						</video>
 					</li>
-					<li class="glide__slide">
-						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
-						</video>
-					</li>
-					<li class="glide__slide">
-						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
-						</video>
-					</li>
-					<li class="glide__slide">
-						<video controls muted loop autoplay>
-						<source src="videos/omniphotos/BallintoyBeach1_row.mp4" type="video/mp4">
-						</video>
-					</li> -->
 				</ul>
 			</div>
 			<div class="glide__arrows" data-glide-el="controls">
 				<span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="resources/arrow-left-circle-fill.svg"></span>
 				<span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="resources/arrow-right-circle-fill.svg"></span>
 			</div>
-			<!-- <div class="glide__bullets" data-glide-el="controls[nav]">
-				<span class="glide__bullet glide__bullet--active" data-glide-dir="=0"></span>
+			<div class="glide__bullets" data-glide-el="controls[nav]">
+				<span class="glide__bullet" data-glide-dir="=0"></span>
 				<span class="glide__bullet" data-glide-dir="=1"></span>
 				<span class="glide__bullet" data-glide-dir="=2"></span>
 				<span class="glide__bullet" data-glide-dir="=3"></span>
@@ -319,45 +392,12 @@
 				<span class="glide__bullet" data-glide-dir="=5"></span>
 				<span class="glide__bullet" data-glide-dir="=6"></span>
 				<span class="glide__bullet" data-glide-dir="=7"></span>
-				<span class="glide__bullet" data-glide-dir="=9"></span>
-				<span class="glide__bullet" data-glide-dir="=10"></span>
-				<span class="glide__bullet" data-glide-dir="=11"></span>
-				<span class="glide__bullet" data-glide-dir="=12"></span>
-			</div> -->
-		</div>
-		<p></p>  
-		<p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://github.com/augmentedperception/deepview_video_dataset">Replica</a>, <a href="https://www.interdigital.com/data_sets/light-field-dataset">Matterport3D</a>, and <a href="https://github.com/facebookresearch/Neural_3D_Video">Omniphotos</a> datasets.</p>
+				<span class="glide__bullet" data-glide-dir="=8"></span>
+			</div>
+            <p></p>
+            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://richardt.name/publications/omniphotos/">Omniphotos</a>.</p>
+	    </div>
 	</div>
-	  
-	<!-- <div class="row justify-content-md-center" id="video">
-		<div class="col">
-			<h3 style="text-align: left;">
-				Video
-			</h3>
-			<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">
-				<div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;">
-					<iframe src="https://www.youtube.com/embed/fR00alALk5E" frameborder="0" allowfullscreen="" style="width:100%;height:100%"></iframe>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<br>
-	<!-- <div class="row">
-		<div class="col">
-			<h3 style="text-align: left;">
-				Citation
-			</h3>
-			<div style="background-color: lightgray;">
-			<pre style="display: inline; white-space: pre-wrap">
-@inproceedings{reyarea2021360monodepth,
-	title={{360MonoDepth}: High-Resolution 360{\deg} Monocular Depth Estimation},
-	author={Manuel Rey-Area and Mingze Yuan and Christian Richardt},
-	booktitle={CVPR},
-	year={2022}}</pre>
-			</div>
-		</div>
-	</div> -->
-	<br>
 </div>
 </body>
 </html>
