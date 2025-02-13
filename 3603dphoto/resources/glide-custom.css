@@ -3,9 +3,25 @@
   margin: auto;
   display: block;
 }
-.glide__slides {
+
+/* #results{
+  height: 640px;
+  width: 640px;
+  background-color: white;
+  object-fit: contain;
+} */
+
+.glide{
   display: none;
 }
+
+.glide.active{
+  display: block;
+}
+
+/* .glide__slides {
+  display: none;
+} */
 .glide__slides.active {
   display: flex;
 }
@@ -22,11 +38,29 @@
   filter: brightness(0%) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(24deg) brightness(100%) contrast(100%) drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 .glide__bullets {
-  bottom: 3.5em;
+  bottom: 5.5em;
 }
-#dynamic-carousel.glide video, #static-carousel.glide video {
+/* #dynamic-carousel.glide video, #dynamic-carousel2.glide video, #static-carousel.glide video {
   width: 640px;
   height: 640px;
+  border-radius: 8px;
+  margin: auto;
+  object-fit: contain;
+} */
+
+#dynamic-carousel-r.glide video, #dynamic-carousel-m.glide video, #static-carousel.glide video {
+  width: 640px;
+  height: 640px; 
+  border-radius: 8px;
+  margin: auto;
+  object-fit: contain;
+}
+#dynamic-carousel-o.glide__bullets {
+  bottom: 8.5em;
+}
+#dynamic-carousel-o.glide video {
+  width: 640px;
+  height: 320px; 
   border-radius: 8px;
   margin: auto;
   object-fit: contain;
