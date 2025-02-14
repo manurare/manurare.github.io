@@ -40,8 +40,8 @@
   bottom: 5.5em;
 }
 #dynamic-carousel-r.glide video, #dynamic-carousel-m.glide video, #static-carousel.glide video {
-  width: 640px;
-  height: 640px; 
+  width: 100%;
+  height: 100%; 
   border-radius: 8px;
   margin: auto;
   object-fit: contain;
@@ -50,8 +50,8 @@
   bottom: 7.5em;
 }
 #dynamic-carousel-o.glide video {
-  width: 640px;
-  height: 320px; 
+  width: 100%;
+  height: 50%; 
   border-radius: 8px;
   margin: auto;
   object-fit: contain;
