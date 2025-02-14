@@ -8,6 +8,7 @@
   position: absolute;
   opacity: 0;
   pointer-events: none;
+  display: none;
 }
 
 .glide__slides.active {
