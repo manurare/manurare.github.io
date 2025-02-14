@@ -41,7 +41,7 @@
 </head>
 
 <body>
-<div class="container-fluid" style="max-width:900px;margin-left:auto;margin-right:auto;">
+<div class="container-fluid" style="max-width:1000px;margin-left:auto;margin-right:auto;">
 	<div class="col-md-12 text-center">
 		<h4 class="display-4" style="text-align:center; white-space: pre-line;">360° 3D Photos from a <br> Single 360° Input Image</h4>
 	</div>
@@ -161,7 +161,8 @@
 				<button class="selected-dataset" onclick="showGroup('omniphotos')">OmniPhotos</button>
 			</div>
 			<br>
-		<div id="dynamic-carousel-r" class="glide glide--ltr glide--carousel glide--swipeable">
+		<div id="dynamic-carousel-r" class="glide hidden-element glide--ltr glide--carousel glide--swipeable">
+			<p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://github.com/facebookresearch/Replica-Dataset">Replica</a>.</p>
 			<div class="glide__track" data-glide-el="track">
 				<ul class="glide__slides" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-.45px, 0px, 0px);">
 					<li class="glide__slide">
@@ -244,11 +245,10 @@
 				<span class="glide__bullet" data-glide-dir="=10"></span>
 				<span class="glide__bullet" data-glide-dir="=11"></span>
 			</div>
-            <p></p>
-            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://github.com/facebookresearch/Replica-Dataset">Replica</a>.</p>
 	    </div>
 
-        <div id="dynamic-carousel-m" class="glide glide--ltr glide--carousel glide--swipeable">
+        <div id="dynamic-carousel-m" class="glide hidden-element glide--ltr glide--carousel glide--swipeable">
+            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://niessner.github.io/Matterport/">Matterport3D</a>.</p>
 			<div class="glide__track" data-glide-el="track">
 				<ul class="glide__slides" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-.45px, 0px, 0px);">
 					<li class="glide__slide">
@@ -325,11 +325,10 @@
 				<span class="glide__bullet" data-glide-dir="=9"></span>
 				<span class="glide__bullet" data-glide-dir="=10"></span>
 			</div>
-            <p></p>
-            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://niessner.github.io/Matterport/">Matterport3D</a>.</p>
 	    </div>
 
-        <div id="dynamic-carousel-o" class="glide glide--ltr glide--carousel glide--swipeable">
+        <div id="dynamic-carousel-o" class="glide hidden-element glide--ltr glide--carousel glide--swipeable">
+            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://richardt.name/publications/omniphotos/">Omniphotos</a>.</p>
 			<div class="glide__track" data-glide-el="track">
 				<ul class="glide__slides" style="transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1); width: 6577.38px; transform: translate3d(-.45px, 0px, 0px);">
 					<li class="glide__slide">
@@ -394,8 +393,6 @@
 				<span class="glide__bullet" data-glide-dir="=7"></span>
 				<span class="glide__bullet" data-glide-dir="=8"></span>
 			</div>
-            <p></p>
-            <p class="center shift-to-above" align="center">6-DoF rendering of scenes from <a href="https://richardt.name/publications/omniphotos/">Omniphotos</a>.</p>
 	    </div>
 	</div>
 </div>
